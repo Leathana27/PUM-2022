@@ -12,11 +12,13 @@
         canvas.style.border = " 1px solid black";
         var c = canvas.getContext("2d");
         var col = "green";
+        var col2 = `rgb(0,${255}, ${0}, 1)`
         
 
         drawCircle();
         drawCircleWithG();
         setInterval(drawCircle, 1000);
+        setInterval(drawCircleWithG, 1000);
 
         function drawCircle(){
             c.beginPath();
@@ -34,6 +36,11 @@
         function drawCircleWithG(){
             c.beginPath();
             c.arc(400, 75, 50, 0, 2 * Math.PI);
+            for (let i = 0; i < 255; i++) {
+                col2 = `rgb(0,${255-i}, ${0+i}, 1)`
+                c.fillStyle = col2;
+                c.fill();
+            }
             c.stroke();
         }
 
