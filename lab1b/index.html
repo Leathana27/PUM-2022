@@ -16,7 +16,6 @@
         var colori = 0;
         var moveY = 50 + 75;
         var change = 1;
-        var changeColor = 1;
         
 
         moveCircle();
@@ -61,15 +60,10 @@
             c.fillStyle = col2;
             c.fill();
             c.stroke();
-            colori += changeColor;
-            console.log(colori);
-            console.log(changeColor);
             if(colori == 255){
-                changeColor = -1;
-                colori += changeColor;
-            }else if(colori == 0){
-                changeColor = 1;
+                colori = 0;
             }
+            colori +=1;
             moveY += change;
             if(moveY >= 600-50){
                 change = -1;
