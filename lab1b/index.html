@@ -15,6 +15,7 @@
         var col2 = `rgb(0,${255}, ${0}, 1)`
         var colori = 0;
         var moveY = 50 + 75;
+        var change = 1;
         
 
         moveCircle();
@@ -51,7 +52,7 @@
         }
 
         function moveCircle(){
-            c.clearRect(0, 0, canvas.width, canvas.height);
+            c.clearRect(300, 0, canvas.width, canvas.height);
             requestAnimationFrame(moveCircle);
             c.beginPath();
             c.arc(400, moveY, 50, 0, 2 * Math.PI);
@@ -64,7 +65,12 @@
             }else{
                 colori += 1;
             }
-            moveY += 1;
+            moveY += change;
+            if(moveY >= 600-50){
+                change = -1;
+            }else if(moveY == 50){
+                change  = 1;
+            }
         }
 
     </script>
