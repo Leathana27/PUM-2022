@@ -14,8 +14,10 @@
         var col = "green";
         var col2 = `rgb(0,${255}, ${0}, 1)`
         var colori = 0;
+        var moveY = 50 + 75;
         
 
+        moveCircle();
         drawCircle();
         drawCircleWithG();
         setInterval(drawCircle, 1000);
@@ -36,7 +38,7 @@
         function drawCircleWithG(){
             requestAnimationFrame(drawCircleWithG);
             c.beginPath();
-            c.arc(400, 75, 50, 0, 2 * Math.PI);
+            c.arc(250, 75, 50, 0, 2 * Math.PI);
             col2 = `rgb(0,${255-colori},${0 + colori}, 1)`;
             c.fillStyle = col2;
             c.fill();
@@ -49,7 +51,20 @@
         }
 
         function moveCircle(){
-
+            c.clearRect(0, 0, canvas.width, canvas.height);
+            requestAnimationFrame(moveCircle);
+            c.beginPath();
+            c.arc(400, moveY, 50, 0, 2 * Math.PI);
+            col2 = `rgb(0,${255-colori},${0 + colori}, 1)`;
+            c.fillStyle = col2;
+            c.fill();
+            c.stroke();
+            if(colori == 255){
+                colori = 0;
+            }else{
+                colori += 1;
+            }
+            moveY += 1;
         }
 
     </script>
