@@ -7,12 +7,14 @@
     <canvas id="myCanvas"></canvas>
     <script>
         var canvas = document.getElementById("myCanvas");
+        canvas.width = "800";
+        canvas.height = "600";
         var c = canvas.getContext("2d");
         var col = "green";
+        
 
         drawCircle();
         setInterval(drawCircle, 1000);
-        drawCircleWithGradient();
 
         function drawCircle(){
             c.beginPath();
@@ -27,9 +29,9 @@
             c.stroke();
         }
 
-        function drawCircleWithGradient(){
+        function drawCircleWithG(){
             c.beginPath();
-            c.arc(400, 400, 50, 0, 2 * Math.PI);
+            c.arc(400, 75, 50, 0, 2 * Math.PI);
             c.stroke();
         }
 
