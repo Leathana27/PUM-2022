@@ -14,8 +14,6 @@
         var col = "green";
         var col2 = `rgb(0,${255}, ${0}, 1)`
         var colori = 0;
-        var gradientB = 255;
-        var gradientG = 0;
         
 
         drawCircle();
@@ -39,22 +37,19 @@
             requestAnimationFrame(drawCircleWithG);
             c.beginPath();
             c.arc(400, 75, 50, 0, 2 * Math.PI);
-            col2 = `rgb(0,${gradientB-colori},${gradientG+colori}, 1)`;
+            col2 = `rgb(0,${255-colori},${0 + colori}, 1)`;
             c.fillStyle = col2;
             c.fill();
             c.stroke();
             if(colori == 255){
                 colori = 0;
-                if(gradientB == 255){
-                    gradientB = 0;
-                    gradientG = 255;
-                }else{
-                    gradientB = 255;
-                    gradientG = 0;
-                }
             }else{
                 colori += 1;
             }
+        }
+
+        function moveCircle(){
+
         }
 
     </script>
