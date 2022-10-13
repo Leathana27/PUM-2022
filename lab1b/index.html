@@ -8,13 +8,19 @@
     <script>
         var canvas = document.getElementById("myCanvas");
         var c = canvas.getContext("2d");
+        var col = "green";
 
         setInterval(drawCircle, 1000);
 
         function drawCircle(){
             c.beginPath();
             c.arc(100, 75, 50, 0, 2 * Math.PI);
-            c.fillStyle = "red";
+            if(col == "green"){
+                col = "blue";
+            }else{
+                col = "green";
+            }
+            c.fillStyle = col;
             c.fill();
             c.stroke();
         }
