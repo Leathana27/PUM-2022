@@ -62,10 +62,11 @@
             c.fill();
             c.stroke();
             colori += changeColor;
+            console.log(colori);
             if(colori == 255){
-                changeColor = -1;
-            }else if(colori = 0){
-                changeColor = 1;
+                changeColor = -2;
+            }else if(colori == 0){
+                changeColor = 2;
             }
             moveY += change;
             if(moveY >= 600-50){
