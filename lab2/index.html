@@ -44,11 +44,22 @@
             console.log(timeI);
         }
 
+        var x = 0;
+        var y = 0;
         function drawCircle(){
+            
+           clearWindow();
             c.beginPath();
-            c.arc(50, 75, 20, 0, 2 * Math.PI);
+            c.arc(x, y, 20, 0, 2 * Math.PI);
             c.stroke();
+            x += 1;
+            y += 10;
             requestAnimationFrame(drawCircle);
+        }
+
+        function clearWindow(){
+            c.clearRect(0, 0, canvas.width, 100);
+
         }
         
         drawStairs();
