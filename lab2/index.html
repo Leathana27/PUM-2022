@@ -44,8 +44,8 @@
             console.log(timeI);
         }
 
-        var x = 0;
-        var y = 0;
+        var x = 50 - 20;
+        var y = 100 - 20;
         function drawCircle(){
             
            clearWindow();
@@ -53,13 +53,24 @@
             c.arc(x, y, 20, 0, 2 * Math.PI);
             c.stroke();
             x += 1;
-            y += 10;
+            if(x%100 == 1 && x < canvas.height){
+                for(let j = 0;j<100;j++){
+                    if(j%5 == 1){
+                        x += 5;
+                    }
+                    y += 1;
+                }
+            }
             requestAnimationFrame(drawCircle);
         }
 
         function clearWindow(){
             c.clearRect(0, 0, canvas.width, 100);
-
+            c.clearRect(100, 100, canvas.width, 100);
+            c.clearRect(200, 200, canvas.width, 100);
+            c.clearRect(300, 300, canvas.width, 100);
+            c.clearRect(400, 400, canvas.width, 100);
+            c.clearRect(500, 500, canvas.width, 100);
         }
         
         drawStairs();
