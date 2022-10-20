@@ -7,6 +7,7 @@
     <canvas id="myCanvas"></canvas>
     <script>
         var timeI = 0;
+        var collisionTab = [];
 
         var canvas = document.getElementById("myCanvas");
         canvas.width = 800;
@@ -15,10 +16,20 @@
         var c = canvas.getContext("2d");
 
         setInterval(drawStairs, 1000);
+
+        class Object {
+                constructor(x, y, width, height) {
+                this.x = x;
+                this.y = y;
+                this.width = width;
+                this.height = height;
+            }
+        }   
         
         function drawStairs(){
             c.beginPath();
             if(timeI == 0){
+                pus
                 c.rect(0,100,100,canvas.height - 100);
             }
             if(timeI == 1){
