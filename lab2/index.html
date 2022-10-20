@@ -15,7 +15,7 @@
         var c = canvas.getContext("2d");
 
         setInterval(drawStairs, 1000);
-
+        
         function drawStairs(){
             c.beginPath();
             if(timeI == 0){
@@ -33,12 +33,22 @@
             if(timeI == 4){
                 c.rect(400,500,100,canvas.height - 500);
             }
+            if(timeI == 5){
+                drawCircle();
+            }
             c.fillStyle = "pink";
             c.fill();
             c.strokeStyle = "red";
             c.stroke();
             timeI += 1;
             console.log(timeI);
+        }
+
+        function drawCircle(){
+            c.beginPath();
+            c.arc(50, 75, 20, 0, 2 * Math.PI);
+            c.stroke();
+            requestAnimationFrame(drawCircle);
         }
         
         drawStairs();
