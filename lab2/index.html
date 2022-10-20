@@ -19,7 +19,19 @@
         function drawStairs(){
             c.beginPath();
             if(timeI == 0){
-                c.rect(0,200,100,canvas.height - 100);
+                c.rect(0,100,100,canvas.height - 100);
+            }
+            if(timeI == 1){
+                c.rect(100,200,100,canvas.height - 200);
+            }
+            if(timeI == 2){
+                c.rect(200,300,100,canvas.height - 300);
+            }
+            if(timeI == 3){
+                c.rect(300,400,100,canvas.height - 400);
+            }
+            if(timeI == 4){
+                c.rect(400,500,100,canvas.height - 500);
             }
 
             c.stroke();
