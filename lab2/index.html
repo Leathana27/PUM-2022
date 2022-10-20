@@ -6,11 +6,33 @@
 <body>
     <canvas id="myCanvas"></canvas>
     <script>
+        var timeI = 0;
+
         var canvas = document.getElementById("myCanvas");
         canvas.width = 800;
         canvas.height = 600;
         canvas.style.border = " 1px solid black";
         var c = canvas.getContext("2d");
+
+        setInterval(drawStairs, 1000);
+
+        function drawStairs(){
+            c.beginPath();
+
+            if(timeI == 0){
+                c.moveTo(100, 600);
+                c.lineTo(100, 500);
+            }
+            if(timeI == 1){
+                c.lineTo(200, 500);
+            }
+
+            c.stroke();
+            timeI += 1;
+            console.log(timeI);
+        }
+        
+        drawStairs();
     </script>
 </body>
 </html>
