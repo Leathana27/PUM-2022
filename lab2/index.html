@@ -54,9 +54,7 @@
             c.stroke();
             x += 1;
             if(x%100 == 1 && x < canvas.height){
-                for(let j = 0;j<100;j++){
-                    y += 10;
-                }
+                y+=100;
             }
             requestAnimationFrame(drawCircle);
         }
