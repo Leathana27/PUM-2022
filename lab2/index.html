@@ -16,20 +16,11 @@
         var c = canvas.getContext("2d");
 
         setInterval(drawStairs, 1000);
-
-        class Object {
-                constructor(x, y, width, height) {
-                this.x = x;
-                this.y = y;
-                this.width = width;
-                this.height = height;
-            }
-        }   
         
         function drawStairs(){
             c.beginPath();
             if(timeI == 0){
-                pus
+                
                 c.rect(0,100,100,canvas.height - 100);
             }
             if(timeI == 1){
@@ -57,9 +48,8 @@
 
         var x = 50 - 20;
         var y = 100 - 20;
-        function drawCircle(){
-            let temp = 0;
-            
+        var temp = 0;
+        function drawCircle(){    
            clearWindow();
             c.beginPath();
             c.arc(x, y, 20, 0, 2 * Math.PI);
@@ -68,9 +58,19 @@
                 x += 1;
             }
 
-            if(x%110 == 1){
-                y+=100;
+            if(temp == 1){
+                x += 0.5;
+                y += 1;
+                if(y%100 == 1){
+                    temp = 0;
+                }
             }
+
+            if(x%100 == 1){
+                temp = 1;
+            }
+
+
             requestAnimationFrame(drawCircle);
         }
 
