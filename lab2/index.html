@@ -43,7 +43,6 @@
             c.strokeStyle = "red";
             c.stroke();
             timeI += 1;
-            console.log(timeI);
         }
 
         var x = 50 - 20;
@@ -57,20 +56,19 @@
             if(temp == 0){
                 x += 1;
             }
-
             if(temp == 1){
                 x += 0.5;
-                y += 1;
-                if(y%100 == 1){
+                y += 5;
+                if(y == 180 || y == 280 || y == 380 || y == 480){
                     temp = 0;
                 }
             }
 
-            if(x%100 == 1){
+            if(x == 110 || x == 210 || x == 310 || x == 410 || x == 510){
                 temp = 1;
             }
 
-
+            console.log(temp);
             requestAnimationFrame(drawCircle);
         }
 
