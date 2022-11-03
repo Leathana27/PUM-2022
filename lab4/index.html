@@ -25,6 +25,19 @@
         var lewyBialy = new Rectangle(175, 0, 25, canvas.height, "white");
         var prawyBialy = new Rectangle(600, 0, 25, canvas.height, "white");
 
+        var leweCzerwone = [];
+        leweCzerwone.push(new Pas(175, 0 , 25, 100, "red"));
+        leweCzerwone.push(new Pas(175, 150, 25, 100, "red"));
+        leweCzerwone.push(new Pas(175, 300, 25, 100, "red"));
+        leweCzerwone.push(new Pas(175, 450, 25, 100, "red"));
+
+        var praweCzerwone = [];
+        praweCzerwone.push(new Pas(600, 0 , 25, 100, "red"));
+        praweCzerwone.push(new Pas(600, 150, 25, 100, "red"));
+        praweCzerwone.push(new Pas(600, 300, 25, 100, "red"));
+        praweCzerwone.push(new Pas(600, 450, 25, 100, "red"));
+
+
         setInterval(animation, 10);
 
         document.addEventListener('keydown', (event) => {
@@ -131,6 +144,22 @@
                 bialePasy.push(new Pas(375, -100 , 50, 100, "white"));
             }
             bialePasy.forEach((pas) => {
+                pas.update();
+            })
+
+            leweCzerwone = leweCzerwone.filter(pas => pas.y < canvas.height);
+            if(leweCzerwone.length < 5){
+                leweCzerwone.push(new Pas(175, -50 , 25, 100, "red"));
+            }
+            leweCzerwone.forEach((pas) => {
+                pas.update();
+            })
+
+            praweCzerwone = praweCzerwone.filter(pas => pas.y < canvas.height);
+            if(praweCzerwone.length < 5){
+                praweCzerwone.push(new Pas(600, -50 , 25, 100, "red"));
+            }
+            praweCzerwone.forEach((pas) => {
                 pas.update();
             })
 
