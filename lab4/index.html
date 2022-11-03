@@ -11,6 +11,8 @@
         canvas.height = 600;
         canvas.style.border = " 1px solid black";
         var c = canvas.getContext("2d");
+    
+        var i = 0;
 
         var trawa = new Rectangle(0, 0, canvas.width, canvas.height, "green");
         var ulica = new Rectangle(200, 0, 400, canvas.height, "gray");
@@ -152,6 +154,8 @@
             }
         }
 
+        var przeszkody = [];
+
         function animation(){
             c.clearRect(0, 0, canvas.width, canvas.height);
             trawa.update();
@@ -184,6 +188,18 @@
             })
 
             samochod.update();
+
+            if(i % 1000 == 0 ){
+                var x = Math.random() * (canvas.width - 100) + 70;
+                var y = Math.random() * (300 - 200) + 70;
+                przeszkody.push(new Pas(x, y , 50, 50, "blue"));
+            }
+
+            przeszkody.forEach((pas) => {
+                pas.update();
+            })
+
+            i+=1;
         }
 
     </script>
