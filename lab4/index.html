@@ -120,6 +120,10 @@
             c.clearRect(0, 0, canvas.width, canvas.height);
             trawa.update();
             ulica.update();
+            bialePasy = bialePasy.filter(pas => pas.y < canvas.height);
+            if(bialePasy.length < 6){
+                bialePasy.push(new Pas(375, -10 , 50, 100, "white"));
+            }
             bialePasy.forEach((pas) => {
                 pas.update();
             })
