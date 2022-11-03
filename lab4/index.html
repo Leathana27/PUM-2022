@@ -110,9 +110,27 @@
                 c.fill();
                 c.closePath();
                 c.beginPath();
-                c.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                c.arc(this.x, this.y + 25, this.radius, 0, Math.PI * 2);
                 c.fillStyle = "black";
                 c.fill();
+                c.closePath();
+                c.beginPath();
+                c.arc(this.x, this.y + 75, this.radius, 0, Math.PI * 2);
+                c.fillStyle = "black";
+                c.fill();
+                c.closePath();
+                c.beginPath();
+                c.arc(this.x + 100, this.y + 25, this.radius, 0, Math.PI * 2);
+                c.fillStyle = "black";
+                c.fill();
+                c.closePath();
+                c.beginPath();
+                c.arc(this.x + 100, this.y + 75, this.radius, 0, Math.PI * 2);
+                c.fillStyle = "black";
+                c.fill();
+                c.closePath();
+                c.beginPath();
+                
             }
 
             this.left = function () {
