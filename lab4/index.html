@@ -15,6 +15,12 @@
         var trawa = new Rectangle(0, 0, canvas.width, canvas.height, "green");
         var ulica = new Rectangle(200, 0, 400, canvas.height, "gray");
 
+        var bialePasy = [];
+        bialePasy.push(new Rectangle(375, 0 , 50, 100, "white"));
+        bialePasy.push(new Rectangle(375, 150 , 50, 100, "white"));
+        bialePasy.push(new Rectangle(375, 300 , 50, 100, "white"));
+        bialePasy.push(new Rectangle(375, 450 , 50, 100, "white"));
+
         setInterval(animation, 10);
 
 
@@ -43,6 +49,10 @@
             c.clearRect(0, 0, canvas.width, canvas.height);
             trawa.update();
             ulica.update();
+
+            bialePasy.forEach((pas) => {
+                pas.update();
+            })
         }
 
     </script>
