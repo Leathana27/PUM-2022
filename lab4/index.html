@@ -12,7 +12,8 @@
         canvas.style.border = " 1px solid black";
         var c = canvas.getContext("2d");
 
-        var ulica = new Rectangle(200, 0, 400, canvas.height);
+        var trawa = new Rectangle(0, 0, canvas.width, canvas.height, "green");
+        var ulica = new Rectangle(200, 0, 400, canvas.height, "gray");
 
         setInterval(animation, 10);
 
@@ -29,7 +30,7 @@
                 c.rect(this.x, this.y, this.w, this.h);
                 c.strokeStyle = this.color;
                 c.stroke();
-                c.fillStyle = "gray";
+                c.fillStyle = this.color;
                 c.fill();
             }
 
@@ -40,6 +41,7 @@
 
         function animation(){
             c.clearRect(0, 0, canvas.width, canvas.height);
+            trawa.update();
             ulica.update();
         }
 
