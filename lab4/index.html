@@ -24,6 +24,15 @@
 
         setInterval(animation, 10);
 
+        document.addEventListener('keydown', (event) => {
+            const key = event.key;
+
+            if(key === "ArrowLeft"){
+                samochod.left();
+            }else if(key === "ArrowRight"){
+                samochod.right()
+            }
+        })
 
         function Rectangle(x, y, w, h, color){
             this.x = x;
@@ -84,14 +93,22 @@
                 c.fillStyle = "red";
                 c.fill();
                 c.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                c.fillStyle = "black";
+                c.fill();
             }
 
-            this.left = function() {
-
+            this.left = function () {
+                if(this.x > 200){
+                    this.x -= 5;
+                }
+                this.update();
             }
 
-            this.right = function(){
-
+            this.right = function () {
+                if(this.x < 500){
+                    this.x += 5;
+                }
+                this.update();
             }
 
             this.update = function () {
