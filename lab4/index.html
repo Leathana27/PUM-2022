@@ -22,6 +22,9 @@
         bialePasy.push(new Pas(375, 300 , 50, 100, "white"));
         bialePasy.push(new Pas(375, 450 , 50, 100, "white"));
 
+        var lewyBialy = new Rectangle(175, 0, 25, canvas.height, "white");
+        var prawyBialy = new Rectangle(600, 0, 25, canvas.height, "white");
+
         setInterval(animation, 10);
 
         document.addEventListener('keydown', (event) => {
@@ -120,6 +123,9 @@
             c.clearRect(0, 0, canvas.width, canvas.height);
             trawa.update();
             ulica.update();
+            lewyBialy.update();
+            prawyBialy.update();
+
             bialePasy = bialePasy.filter(pas => pas.y < canvas.height);
             if(bialePasy.length < 5){
                 bialePasy.push(new Pas(375, -100 , 50, 100, "white"));
