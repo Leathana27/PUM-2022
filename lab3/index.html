@@ -13,6 +13,8 @@
         var c = canvas.getContext("2d");
 
         var player = new Rectangle(300, 540, 150, 25, "black");
+        var f_layer = [];
+        var s_layer = [];
 
         setInterval(animation, 10);
 
@@ -71,22 +73,34 @@
             this.draw = function () {
                 c.beginPath();
                 c.rect(this.x, this.y, this.w, this.h);
-                c.strokeStyle = this.color;
+                c.strokeStyle = "black";
                 c.stroke();
                 c.fillStyle = this.color;
                 c.fill();
             }
+
+
 
             this.update = function () {
                 this.draw();
             }
         }
 
+        function init(){
+            for(let i = 0; i < 10; i++){
+                f_layer.push(new Blok(0 + i*80, 300, 80, 20, "pink"));
+            }
+        }
+
         function animation(){
             c.clearRect(0, 0, canvas.width, canvas.height);
+            f_layer.forEach(blok => {
+                blok.update();
+            });
             player.update();
         }
 
+        init();
     </script>
 </body>
 </html>
