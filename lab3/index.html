@@ -108,11 +108,13 @@
                 f_layer.forEach((blok) => {
                     if(this.kx + this.kw >= blok.x && this.kx <= blok.x + blok.w && this.ky + this.kw >= blok.y && this.ky <= blok.y + blok.h){
                         f_layer = f_layer.filter(b => blok.id !== b.id);
+                        this.dy *= -1;
                     }
                 })
                 s_layer.forEach((blok) => {
                     if(this.kx + this.kw >= blok.x && this.kx <= blok.x + blok.w && this.ky + this.kw >= blok.y && this.ky <= blok.y + blok.h){
                         s_layer = s_layer.filter(b => blok.id !== b.id);
+                        this.dy *= -1;
                     }
                 })
                 if(this.kx + this.kw >= player.x && this.kx <= player.x + player.w && this.ky + this.kw >= player.y && this.ky <= player.y + player.h){
@@ -123,6 +125,12 @@
             this.update= function() {
                 if(this.y>540){
                     ball.pop();
+                }
+                if (this.x > canvas.width - this.radius || this.x < this.radius) {
+                    this.dx *= -1;
+                }
+                if (this.y < this.radius) {
+                    this.dy *= -1;
                 }
                 this.collision();
                 this.x += this.dx;
