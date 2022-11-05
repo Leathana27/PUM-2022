@@ -15,6 +15,7 @@
         var player = new Rectangle(300, 540, 150, 25, "black");
         var f_layer = [];
         var s_layer = [];
+        var ball = [];
 
         setInterval(animation, 10);
 
@@ -85,7 +86,27 @@
             }
         }
 
-        function Circle(x, y, radius, color, id){
+        function Circle(x, y, radius, color){
+            this.x = x;
+            this.y = y;
+            this.dx = 1;
+            this.dy = 1;
+            this. radius = radius;
+            this.color = color;
+
+            this.draw = function () {
+                c.beginPath();
+                c.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                c.strokeStyle = this.color;
+                c.stroke();
+            }
+
+            
+            this.update= function() {
+                this.x += this.dx;
+                this.y += this.dy;
+                this.draw();
+            }
 
         }
 
@@ -96,6 +117,8 @@
             for(let i = 0; i < 10; i++){
                 s_layer.push(new Blok(0 + i*80, 180, 80, 20, "red", i ));
             }
+            var player = new Rectangle(300, 540, 150, 25, "black");
+            ball.push(new Circle(370, 500, 10, "red"));
         }
 
         function animation(){
@@ -105,6 +128,12 @@
             });
             s_layer.forEach(blok => {
                 blok.update();
+            });
+            if(ball.length<1){
+                ball.push(new Circle(700, 500, 10, "red"));
+            }
+            ball.forEach(kulka => {
+                kulka.update();
             });
             player.update();
         }
