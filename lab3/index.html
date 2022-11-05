@@ -16,6 +16,7 @@
         var f_layer = [];
         var s_layer = [];
         var ball = [];
+        var score = 0;
 
         setInterval(animation, 10);
 
@@ -89,8 +90,8 @@
         function Circle(x, y, radius, color){
             this.x = x;
             this.y = y;
-            this.dx = 1;
-            this.dy = 1;
+            this.dx = 2;
+            this.dy = 2;
             this. radius = radius;
             this.color = color;
 
@@ -99,6 +100,8 @@
                 c.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
                 c.strokeStyle = this.color;
                 c.stroke();
+                c.fillStyle = "yellow";
+                c.fill();
             }
 
             this.collision = function () {
@@ -109,12 +112,14 @@
                     if(this.kx + this.kw >= blok.x && this.kx <= blok.x + blok.w && this.ky + this.kw >= blok.y && this.ky <= blok.y + blok.h){
                         f_layer = f_layer.filter(b => blok.id !== b.id);
                         this.dy *= -1;
+                        score += 1;
                     }
                 })
                 s_layer.forEach((blok) => {
                     if(this.kx + this.kw >= blok.x && this.kx <= blok.x + blok.w && this.ky + this.kw >= blok.y && this.ky <= blok.y + blok.h){
                         s_layer = s_layer.filter(b => blok.id !== b.id);
                         this.dy *= -1;
+                        score += 1;
                     }
                 })
                 if(this.kx + this.kw >= player.x && this.kx <= player.x + player.w && this.ky + this.kw >= player.y && this.ky <= player.y + player.h){
@@ -153,6 +158,8 @@
 
         function animation(){
             c.clearRect(0, 0, canvas.width, canvas.height);
+            c.font = "30px Arail";
+            c.fillText("Score: " + score*100, 100, 100);
             f_layer.forEach(blok => {
                 blok.update();
             });
