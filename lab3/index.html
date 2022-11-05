@@ -101,8 +101,10 @@
                 c.stroke();
             }
 
-            
             this.update= function() {
+                if(this.y>540){
+                    ball.pop();
+                }
                 this.x += this.dx;
                 this.y += this.dy;
                 this.draw();
@@ -130,7 +132,7 @@
                 blok.update();
             });
             if(ball.length<1){
-                ball.push(new Circle(700, 500, 10, "red"));
+                ball.push(new Circle(370, 500, 10, "red"));
             }
             ball.forEach(kulka => {
                 kulka.update();
