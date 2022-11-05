@@ -93,6 +93,9 @@
             this.dy = 1;
             this. radius = radius;
             this.color = color;
+            this.kx = this.x - this.radius;
+            this.ky = this.y - this.radius;
+            this.kw = this.radius;
 
             this.draw = function () {
                 c.beginPath();
@@ -110,6 +113,16 @@
             }
 
             this.update= function() {
+                console.log(this.kw);
+                console.log(this.ky);
+                console.log(this.kx);
+                if(this.kx + this.kw >= player.x && 
+                this.kx <= player.x + player.w && 
+                this.ky + this.kw >= player.y && 
+                this.ky <= player.y + player.h){
+                    console.log("halp");
+                     this.dy *= -1;
+                }
                 if(this.y>540){
                     ball.pop();
                 }
