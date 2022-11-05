@@ -12,6 +12,60 @@
         canvas.style.border = "1px solid black";
         var c = canvas.getContext("2d");
 
+        var player = new Rectangle(300, 540, 150, 25, "black");
+
+        setInterval(animation, 10);
+
+        document.addEventListener('keydown', (event) => {
+            const key = event.key;
+
+            if(key === "ArrowLeft"){
+                player.left();
+            }else if(key === "ArrowRight"){
+                player.right();
+            }
+        })
+
+        function Rectangle(x, y, w, h, color){
+            this.x = x;
+            this.y = y;
+            this.w = w;
+            this.h = h;
+            this.color = color; 
+
+            this.draw = function () {
+                c.beginPath();
+                c.rect(this.x, this.y, this.w, this.h);
+                c.strokeStyle = this.color;
+                c.stroke();
+                c.fillStyle = this.color;
+                c.fill();
+            }
+
+            this.left = function () {
+                if(this.x > 0){
+                    this.x -= 5;
+                }
+                this.update();
+            }
+
+            this.right = function () {
+                if(this.x < 700){
+                    this.x += 5;
+                }
+                this.update();
+            }
+
+            this.update = function () {
+                this.draw();
+            }
+        }
+
+        function animation(){
+            c.clearRect(0, 0, canvas.width, canvas.height);
+            player.update();
+        }
+
     </script>
 </body>
 </html>
