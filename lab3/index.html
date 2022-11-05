@@ -46,14 +46,14 @@
 
             this.left = function () {
                 if(this.x > 0){
-                    this.x -= 5;
+                    this.x -= 10;
                 }
                 this.update();
             }
 
             this.right = function () {
-                if(this.x < 700){
-                    this.x += 5;
+                if(this.x < 650){
+                    this.x += 10;
                 }
                 this.update();
             }
@@ -80,11 +80,13 @@
                 c.fill();
             }
 
-
-
             this.update = function () {
                 this.draw();
             }
+        }
+
+        function Circle(x, y, radius, color, id){
+
         }
 
         function init(){
