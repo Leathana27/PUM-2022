@@ -63,12 +63,13 @@
             }
         }
 
-        function Blok(x, y, w, h, color){
+        function Blok(x, y, w, h, color, id){
             this.x = x;
             this.y = y;
             this.w = w;
             this.h = h;
             this.color = color; 
+            this.id = id;
 
             this.draw = function () {
                 c.beginPath();
@@ -88,13 +89,19 @@
 
         function init(){
             for(let i = 0; i < 10; i++){
-                f_layer.push(new Blok(0 + i*80, 300, 80, 20, "pink"));
+                f_layer.push(new Blok(0 + i*80, 200, 80, 20, "pink", i));
+            }
+            for(let i = 0; i < 10; i++){
+                s_layer.push(new Blok(0 + i*80, 180, 80, 20, "red", i ));
             }
         }
 
         function animation(){
             c.clearRect(0, 0, canvas.width, canvas.height);
             f_layer.forEach(blok => {
+                blok.update();
+            });
+            s_layer.forEach(blok => {
                 blok.update();
             });
             player.update();
