@@ -93,9 +93,6 @@
             this.dy = 1;
             this. radius = radius;
             this.color = color;
-            this.kx = this.x - this.radius;
-            this.ky = this.y - this.radius;
-            this.kw = this.radius;
 
             this.draw = function () {
                 c.beginPath();
@@ -105,24 +102,25 @@
             }
 
             this.collision = function () {
+                this.kx = this.x - this.radius;
+                this.ky = this.y - this.radius;
+                this.kw = this.radius;
                 f_layer.forEach((blok) => {
-                    if(this.x + this.w >= blok.x && this.x <= blok.x + blok.w && this.y + this.h >= blok.y && this.y <= blok.y + blok.h){
+                    if(this.kx + this.kw >= blok.x && this.kx <= blok.x + blok.w && this.ky + this.kw >= blok.y && this.ky <= blok.y + blok.h){
                         f_layer = f_layer.filter(b => blok.id !== b.id);
                     }
                 })
+                s_layer.forEach((blok) => {
+                    if(this.kx + this.kw >= blok.x && this.kx <= blok.x + blok.w && this.ky + this.kw >= blok.y && this.ky <= blok.y + blok.h){
+                        s_layer = s_layer.filter(b => blok.id !== b.id);
+                    }
+                })
+                if(this.kx + this.kw >= player.x && this.kx <= player.x + player.w && this.ky + this.kw >= player.y && this.ky <= player.y + player.h){
+                    this.dy *= -1;
+                }
             }
 
             this.update= function() {
-                console.log(this.kw);
-                console.log(this.ky);
-                console.log(this.kx);
-                if(this.kx + this.kw >= player.x && 
-                this.kx <= player.x + player.w && 
-                this.ky + this.kw >= player.y && 
-                this.ky <= player.y + player.h){
-                    console.log("halp");
-                     this.dy *= -1;
-                }
                 if(this.y>540){
                     ball.pop();
                 }
