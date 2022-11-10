@@ -16,7 +16,7 @@
 
         var trawa = new Rectangle(0, 0, canvas.width, canvas.height, "green");
         var ulica = new Rectangle(200, 0, 400, canvas.height, "gray");
-        var samochod = new Car(350, 490, 100, 100, 10, "red");
+        var samochod = new Car(350, 490, 60, 100, 10, "red");
 
         var bialePasy = [];
         bialePasy.push(new Pas(375, -150 , 50, 100, "white"));
@@ -77,6 +77,7 @@
         }
 
         function Pas(x, y, w, h, color){
+
             this.x = x;
             this.y = y;
             this.w = w;
@@ -125,12 +126,12 @@
                 c.fill();
                 c.closePath();
                 c.beginPath();
-                c.arc(this.x + 100, this.y + 25, this.radius, 0, Math.PI * 2);
+                c.arc(this.x + 60, this.y + 25, this.radius, 0, Math.PI * 2);
                 c.fillStyle = "black";
                 c.fill();
                 c.closePath();
                 c.beginPath();
-                c.arc(this.x + 100, this.y + 75, this.radius, 0, Math.PI * 2);
+                c.arc(this.x + 60, this.y + 75, this.radius, 0, Math.PI * 2);
                 c.fillStyle = "black";
                 c.fill();
                 c.closePath();
