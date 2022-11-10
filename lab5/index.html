@@ -18,6 +18,8 @@
         var przedzkodaID = 0;
         var bonusyID = 0;
 
+        var punkty = 0;
+
         var trawa = new Rectangle(0, 0, canvas.width, canvas.height, "green");
         var ulica = new Rectangle(200, 0, 400, canvas.height, "gray");
         var samochod = new Car(370, 490, 60, 100, 10, "#942c70");
@@ -163,6 +165,30 @@
                 bulletID += 1;
             }
 
+            this.collision = function () {
+                bonusy.forEach((bonus) => {
+                    if(this.x + this.w >= bonus.x && 
+                    this.x <= bonus.x + bonus.w && 
+                    this.y + this.h >= bonus.y && 
+                    this.y <= bonus.y + bonus.h){
+                        bonusy = bonusy.filter(b => bonus.id !== b.id)
+                        punkty += 1;
+                    }
+                })
+
+                przeszkody.forEach((przeszkoda) => {
+                    if(this.x + this.w >= przeszkoda.x && 
+                    this.x <= przeszkoda.x + przeszkoda.w && 
+                    this.y + this.h >= przeszkoda.y && 
+                    this.y <= przeszkoda.y + przeszkoda.h){
+                        przeszkody = przeszkody.filter(p => przeszkoda.id !== p.id)
+                        if(punkty > 0){
+                            punkty -= 1;
+                        }
+                    }
+                })
+            }
+
             this.update = function () {
                 if(this.x > 200 && this.left == true){
                     this.x -= 5;
@@ -170,6 +196,7 @@
                 if(this.x < 540 && this.right == true){
                     this.x += 5;
                 }
+                this.collision();
                 this.draw();
             }
         }
@@ -233,6 +260,9 @@
             ulica.update();
             lewyBialy.update();
             prawyBialy.update();
+
+            c.font = "30px Arail";
+            c.fillText("Score: " + punkty*100, 10, 40);
 
             bialePasy = bialePasy.filter(pas => pas.y < canvas.height);
             if(bialePasy.length < 5){
