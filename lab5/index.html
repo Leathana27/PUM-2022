@@ -16,6 +16,7 @@
 
         var bulletID = 0;
         var przedzkodaID = 0;
+        var bonusyID = 0;
 
         var trawa = new Rectangle(0, 0, canvas.width, canvas.height, "green");
         var ulica = new Rectangle(200, 0, 400, canvas.height, "gray");
@@ -158,7 +159,7 @@
             }
 
             this.shoot = function () {
-                bullets.push(new Bullet(this.x + this.w/2, this.y, 5, "green", bulletID));
+                bullets.push(new Bullet(this.x + this.w/2, this.y, 10, "green", bulletID));
                 bulletID += 1;
             }
 
@@ -187,6 +188,8 @@
                 c.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
                 c.strokeStyle = this.color;
                 c.stroke();
+                c.fillStyle = this.color;
+                c.fill();
             }
 
             this.update= function() {
@@ -221,6 +224,8 @@
         var bullets = [];
 
         var przeszkody = [];
+
+        var bonusy = [];
 
         function animation(){
             c.clearRect(0, 0, canvas.width, canvas.height);
@@ -262,7 +267,18 @@
                 przedzkodaID += 1;
             }
 
+            if(i % 200 == 0 ){
+                var x = Math.random() * (400 - 50) + 200;
+                var y = -100;
+                bonusy.push(new Pas(x, y , 25, 25, "gold", bonusyID));
+                bonusyID += 1;
+            }
+
             przeszkody.forEach((pas) => {
+                pas.update();
+            })
+
+            bonusy.forEach((pas) => {
                 pas.update();
             })
 
