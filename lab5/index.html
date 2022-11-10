@@ -113,7 +113,7 @@
             }
 
             this.update = function () {
-                this.y += 5;
+                this.y += 3;
                 this.draw();
             }
         }
@@ -241,6 +241,7 @@
                     this.ky <= przeszkoda.y + przeszkoda.h){
                         bullets = bullets.filter(bullet => bullet.id !== this.id);
                         przeszkody = przeszkody.filter(p => przeszkoda.id !== p.id)
+                        punkty += 1;
                     }
                 })
             }
