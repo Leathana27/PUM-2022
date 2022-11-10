@@ -49,9 +49,19 @@
             const key = event.key;
 
             if(key === "ArrowLeft"){
-                samochod.left();
+                samochod.left = true;
             }else if(key === "ArrowRight"){
-                samochod.right()
+                samochod.right = true;
+            }
+        })
+
+        document.addEventListener('keyup', (event) => {
+            const key = event.key;
+
+            if(key === "ArrowLeft"){
+                samochod.left = false;
+            }else if(key === "ArrowRight"){
+                samochod.right = false;
             }
         })
 
@@ -106,6 +116,8 @@
             this.h = h;
             this.radius = radius;
             this.color = color; 
+            this.left = false;
+            this.right = false;
 
             this.draw = function () {
                 c.beginPath();
@@ -139,21 +151,27 @@
                 
             }
 
-            this.left = function () {
-                if(this.x > 200){
-                    this.x -= 5;
-                }
-                this.update();
-            }
+            // this.left = function () {
+            //     if(this.x > 200){
+            //         this.x -= 5;
+            //     }
+            //     this.update();
+            // }
 
-            this.right = function () {
-                if(this.x < 500){
-                    this.x += 5;
-                }
-                this.update();
-            }
+            // this.right = function () {
+            //     if(this.x < 500){
+            //         this.x += 5;
+            //     }
+            //     this.update();
+            // }
 
             this.update = function () {
+                if(this.x > 200 && this.left == true){
+                    this.x -= 5;
+                }
+                if(this.x < 540 && this.right == true){
+                    this.x += 5;
+                }
                 this.draw();
             }
         }
