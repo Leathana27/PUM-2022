@@ -52,6 +52,8 @@
                 samochod.left = true;
             }else if(key === "ArrowRight"){
                 samochod.right = true;
+            }else if(key === " "){
+                samochod.shoot();
             }
         })
 
@@ -149,6 +151,9 @@
                 c.closePath();
                 c.beginPath();
                 
+            }
+
+            this.shoot = function () {
             }
 
             this.update = function () {
