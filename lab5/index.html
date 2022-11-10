@@ -158,6 +158,8 @@
             }
 
             this.shoot = function () {
+                bullets.push(new Bullet(this.x + this.w/2, this.y, 5, "green", bulletID));
+                bulletID += 1;
             }
 
             this.update = function () {
@@ -262,6 +264,10 @@
 
             przeszkody.forEach((pas) => {
                 pas.update();
+            })
+
+            bullets.forEach((bullet) => {
+                bullet.update();
             })
 
             i+=1;
