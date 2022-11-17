@@ -210,6 +210,7 @@
                     this.y <= przeszkoda.y + przeszkoda.h){
                         przeszkody = przeszkody.filter(p => przeszkoda.id !== p.id)
                         gameOver = 1;
+                        
                     }
                 })
             }
@@ -302,6 +303,11 @@
             c.font = "30px Arail";
             c.fillText("Score: " + punkty*10, 10, 40);
             c.fillText("Speed: " + ((speed*15) + 50), 10, 80);
+
+            if(gameOver){
+                c.fillStyle = "red";
+                c.fillText("Game over", 200, 80); 
+            }
 
             bialePasy = bialePasy.filter(pas => pas.y < canvas.height);
             if(bialePasy.length < 5){
