@@ -68,7 +68,9 @@
             }else if(key === "ArrowRight"){
                 samochod.right = true;
             }else if(key === " "){
-                samochod.shoot();
+                if(!gameOver){
+                    samochod.shoot();
+                }
             }else if(key === "ArrowUp"){
                 samochod.up = true;
             }else if(key === "ArrowDown"){
@@ -80,6 +82,10 @@
             }else if(key === "z"){
                 if(speed >= 0){
                     speed -= 0.2;
+                }
+            }else if(key === "q"){
+                if(gameOver){
+                    document.location.reload(true);
                 }
             }
         })
@@ -359,7 +365,7 @@
             if(gameOver){
                 c.fillStyle = "red";
                 c.fillText("Game over", 310, 300); 
-                c.fillText("Press space to restart...", 310, 360); 
+                c.fillText("Press q to restart...", 310, 360); 
 
             }
 
