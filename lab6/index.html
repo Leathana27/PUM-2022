@@ -23,7 +23,12 @@
         var punkty = 0;
 
         var trawa = new Rectangle(0, 0, canvas.width, canvas.height, "green");
-        var ulica = new Rectangle(200, 0, 400, canvas.height, "gray");
+        var ulicaTab = [];
+        ulicaTab.push(new Rectangle(200, 0, 400, 0, "gray"));
+        ulicaTab.push(new Rectangle(200, 0, 400, 200, "gray"));
+        ulicaTab.push(new Rectangle(200, 0, 400, 400, "gray"));
+        ulicaTab.push(new Rectangle(200, 0, 400, 600, "gray"));
+
         var samochod = new Car(370, 490, 60, 100, 10, "#942c70");
 
         var bialePasy = [];
@@ -204,7 +209,7 @@
                         przeszkody = przeszkody.filter(p => przeszkoda.id !== p.id)
                         if(punkty > 0){
                             punkty -= 1;
-                            
+
                         }
                     }
                 })
