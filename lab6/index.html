@@ -209,26 +209,29 @@
                     this.y + this.h >= przeszkoda.y && 
                     this.y <= przeszkoda.y + przeszkoda.h){
                         przeszkody = przeszkody.filter(p => przeszkoda.id !== p.id)
-                        
+                        gameOver = 1;
                     }
                 })
             }
 
             this.update = function () {
-                if(this.x > 200 && this.left == true){
+                if(!gameOver){
+                    if(this.x > 200 && this.left == true){
                     this.x -= 5;
-                }
-                if(this.x < 540 && this.right == true){
-                    this.x += 5;
-                }
-                if(this.y > 0 && this.up == true){
-                    this.y -= 5;
-                }
-                if(this.y < 500 && this.down == true){
-                    this.y += 5;
-                }
+                    }
+                    if(this.x < 540 && this.right == true){
+                        this.x += 5;
+                    }
+                    if(this.y > 0 && this.up == true){
+                        this.y -= 5;
+                    }
+                    if(this.y < 500 && this.down == true){
+                        this.y += 5;
+                    }
 
-                this.collision();
+                    this.collision();
+                }
+               
                 this.draw();
             }
         }
