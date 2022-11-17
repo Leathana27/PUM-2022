@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+
+<body>
+    <canvas id="myCanvas"></canvas>
+    <script>
+        var canvas = document.getElementById("myCanvas");
+        canvas.width = 800;
+        canvas.height = 600;
+        canvas.style.border = " 1px solid black";
+        var c = canvas.getContext("2d");
+    
+        var i = 0;
+
+        var bulletID = 0;
+        var przedzkodaID = 0;
+        var bonusyID = 0;
+
+        var punkty = 0;
+
+        var trawa = new Rectangle(0, 0, canvas.width, canvas.height, "green");
+        var ulica = new Rectangle(200, 0, 400, canvas.height, "gray");
+        var samochod = new Car(370, 490, 60, 100, 10, "#942c70");
+
+        var bialePasy = [];
+        bialePasy.push(new Pas(375, -150 , 50, 100, "white"));
+        bialePasy.push(new Pas(375, 0 , 50, 100, "white"));
+        bialePasy.push(new Pas(375, 150 , 50, 100, "white"));
+        bialePasy.push(new Pas(375, 300 , 50, 100, "white"));
+        bialePasy.push(new Pas(375, 450 , 50, 100, "white"));
+
+        var lewyBialy = new Rectangle(175, 0, 25, canvas.height, "white");
+        var prawyBialy = new Rectangle(600, 0, 25, canvas.height, "white");
+
+        var leweCzerwone = [];
+        leweCzerwone.push(new Pas(175, -150, 25, 100, "red"));
+        leweCzerwone.push(new Pas(175, 0 , 25, 100, "red"));
+        leweCzerwone.push(new Pas(175, 150, 25, 100, "red"));
+        leweCzerwone.push(new Pas(175, 300, 25, 100, "red"));
+        leweCzerwone.push(new Pas(175, 450, 25, 100, "red"));
+
+        var praweCzerwone = [];
+        praweCzerwone.push(new Pas(600, -150 , 25, 100, "red"));
+        praweCzerwone.push(new Pas(600, 0 , 25, 100, "red"));
+        praweCzerwone.push(new Pas(600, 150, 25, 100, "red"));
+        praweCzerwone.push(new Pas(600, 300, 25, 100, "red"));
+        praweCzerwone.push(new Pas(600, 450, 25, 100, "red"));
+
+
+        setInterval(animation, 10);
+
+        document.addEventListener('keydown', (event) => {
+            const key = event.key;
+
+            if(key === "ArrowLeft"){
+                samochod.left = true;
+            }else if(key === "ArrowRight"){
+                samochod.right = true;
+            }else if(key === " "){
+                samochod.shoot();
+            }else if(key === "ArrowUp"){
+                samochod.up = true;
+            }else if(key === "ArrowDown"){
+                samochod.down = true;
+            }
+        })
+
+        document.addEventListener('keyup', (event) => {
+            const key = event.key;
+
+            if(key === "ArrowLeft"){
+                samochod.left = false;
+            }else if(key === "ArrowRight"){
+                samochod.right = false;
+            }else if(key === "ArrowUp"){
+                samochod.up = false;
+            }else if(key === "ArrowDown"){
+                samochod.down = false;
+            }
+        })
+
+        function Rectangle(x, y, w, h, color){
+            this.x = x;
+            this.y = y;
+            this.w = w;
+            this.h = h;
+            this.color = color; 
+
+            this.draw = function () {
+                c.beginPath();
+                c.rect(this.x, this.y, this.w, this.h);
+                c.strokeStyle = this.color;
+                c.stroke();
+                c.fillStyle = this.color;
+                c.fill();
+            }
+
+            this.update = function () {
+                this.draw();
+            }
+        }
+
+        function Pas(x, y, w, h, color, id){
+
+            this.x = x;
+            this.y = y;
+            this.w = w;
+            this.h = h;
+            this.color = color; 
+            this.id = id;
+
+            this.draw = function () {
+                c.beginPath();
+                c.rect(this.x, this.y, this.w, this.h);
+                c.strokeStyle = this.color;
+                c.stroke();
+                c.fillStyle = this.color;
+                c.fill();
+            }
+
+            this.update = function () {
+                this.y += 3;
+                this.draw();
+            }
+        }
+
+        function Car(x, y, w, h, radius, color){
+            this.x = x;
+            this.y = y;
+            this.w = w;
+            this.h = h;
+            this.radius = radius;
+            this.color = color; 
+            this.left = false;
+            this.right = false;
+            this.up = false;
+            this.down = false;
+
+            this.draw = function () {
+                c.beginPath();
+                c.rect(this.x, this.y, this.w, this.h);
+                c.strokeStyle = this.color;
+                c.stroke();
+                c.fillStyle = this.color;
+                c.fill();
+                c.closePath();
+                c.beginPath();
+                c.arc(this.x, this.y + 25, this.radius, 0, Math.PI * 2);
+                c.fillStyle = "black";
+                c.fill();
+                c.closePath();
+                c.beginPath();
+                c.arc(this.x, this.y + 75, this.radius, 0, Math.PI * 2);
+                c.fillStyle = "black";
+                c.fill();
+                c.closePath();
+                c.beginPath();
+                c.arc(this.x + 60, this.y + 25, this.radius, 0, Math.PI * 2);
+                c.fillStyle = "black";
+                c.fill();
+                c.closePath();
+                c.beginPath();
+                c.arc(this.x + 60, this.y + 75, this.radius, 0, Math.PI * 2);
+                c.fillStyle = "black";
+                c.fill();
+                c.closePath();
+                c.beginPath();
+                
+            }
+
+            this.shoot = function () {
+                bullets.push(new Bullet(this.x + this.w/2, this.y, 10, "green", bulletID));
+                bulletID += 1;
+            }
+
+            this.collision = function () {
+                bonusy.forEach((bonus) => {
+                    if(this.x + this.w >= bonus.x && 
+                    this.x <= bonus.x + bonus.w && 
+                    this.y + this.h >= bonus.y && 
+                    this.y <= bonus.y + bonus.h){
+                        bonusy = bonusy.filter(b => bonus.id !== b.id)
+                        punkty += 1;
+                    }
+                })
+
+                przeszkody.forEach((przeszkoda) => {
+                    if(this.x + this.w >= przeszkoda.x && 
+                    this.x <= przeszkoda.x + przeszkoda.w && 
+                    this.y + this.h >= przeszkoda.y && 
+                    this.y <= przeszkoda.y + przeszkoda.h){
+                        przeszkody = przeszkody.filter(p => przeszkoda.id !== p.id)
+                        if(punkty > 0){
+                            punkty -= 1;
+                        }
+                    }
+                })
+            }
+
+            this.update = function () {
+                if(this.x > 200 && this.left == true){
+                    this.x -= 5;
+                }
+                if(this.x < 540 && this.right == true){
+                    this.x += 5;
+                }
+                if(this.y < 0 && this.up == true){
+                    this.y += 5;
+                }
+                if(this.y < 800 && this.down == true){
+                    this.y -= 5;
+                }
+                this.collision();
+                this.draw();
+            }
+        }
+
+        function Bullet(x, y, radius, color, id){
+            this.x = x;
+            this.y = y;
+            this.speed = -5;
+            this.radius = radius;
+            this.color = color;
+            this.id = id;
+
+
+            this.draw = function () {
+                c.beginPath();
+                c.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                c.strokeStyle = this.color;
+                c.stroke();
+                c.fillStyle = this.color;
+                c.fill();
+            }
+
+            this.update= function() {
+                if (this.y > canvas.height - this.radius || this.y < this.radius) {
+                    bullets = bullets.filter(bullets => bullets.id !== this.id);
+                }
+
+                this.collision();
+
+                this.y += this.speed;
+                this.draw();
+            }
+
+            this.collision = function () {
+                this.kx = this.x - this.radius;
+                this.ky = this.y - this.radius;
+                this.kw = this.radius;
+                przeszkody.forEach((przeszkoda) => {
+                    if(this.kx + this.kw >= przeszkoda.x && 
+                    this.kx <= przeszkoda.x + przeszkoda.w && 
+                    this.ky + this.kw >= przeszkoda.y && 
+                    this.ky <= przeszkoda.y + przeszkoda.h){
+                        bullets = bullets.filter(bullet => bullet.id !== this.id);
+                        przeszkody = przeszkody.filter(p => przeszkoda.id !== p.id)
+                        punkty += 1;
+                    }
+                })
+            }
+            
+
+        }
+
+        var bullets = [];
+
+        var przeszkody = [];
+
+        var bonusy = [];
+
+        function animation(){
+            c.clearRect(0, 0, canvas.width, canvas.height);
+            trawa.update();
+            ulica.update();
+            lewyBialy.update();
+            prawyBialy.update();
+
+            c.font = "30px Arail";
+            c.fillText("Score: " + punkty*10, 10, 40);
+
+            bialePasy = bialePasy.filter(pas => pas.y < canvas.height);
+            if(bialePasy.length < 5){
+                bialePasy.push(new Pas(375, -150 , 50, 100, "white"));
+            }
+            bialePasy.forEach((pas) => {
+                pas.update();
+            })
+
+            leweCzerwone = leweCzerwone.filter(pas => pas.y < canvas.height);
+            if(leweCzerwone.length < 5){
+                leweCzerwone.push(new Pas(175, -150 , 25, 100, "red"));
+            }
+            leweCzerwone.forEach((pas) => {
+                pas.update();
+            })
+
+            praweCzerwone = praweCzerwone.filter(pas => pas.y < canvas.height);
+            if(praweCzerwone.length < 5){
+                praweCzerwone.push(new Pas(600, -150 , 25, 100, "red"));
+            }
+            praweCzerwone.forEach((pas) => {
+                pas.update();
+            })
+
+            samochod.update();
+
+            if(i % 300 == 0 ){
+                var x = Math.random() * (400 - 50) + 200;
+                var y = -100;
+                przeszkody.push(new Pas(x, y , 50, 50, "black", przedzkodaID));
+                przedzkodaID += 1;
+            }
+
+            if(i % 200 == 0 ){
+                var x = Math.random() * (400 - 50) + 200;
+                var y = -100;
+                bonusy.push(new Pas(x, y , 25, 25, "gold", bonusyID));
+                bonusyID += 1;
+            }
+
+            przeszkody.forEach((pas) => {
+                pas.update();
+            })
+
+            bonusy.forEach((pas) => {
+                pas.update();
+            })
+
+            bullets.forEach((bullet) => {
+                bullet.update();
+            })
+
+            i+=1;
+        }
+
+    </script>
+</body>
+</html>
