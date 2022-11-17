@@ -207,10 +207,7 @@
                     this.y + this.h >= przeszkoda.y && 
                     this.y <= przeszkoda.y + przeszkoda.h){
                         przeszkody = przeszkody.filter(p => przeszkoda.id !== p.id)
-                        if(punkty > 0){
-                            punkty -= 1;
-
-                        }
+                        
                     }
                 })
             }
@@ -291,7 +288,9 @@
         function animation(){
             c.clearRect(0, 0, canvas.width, canvas.height);
             trawa.update();
-            ulica.update();
+            ulicaTab.forEach((ulica) => {
+                ulica.update();
+            })
             lewyBialy.update();
             prawyBialy.update();
 
