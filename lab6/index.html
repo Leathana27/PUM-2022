@@ -206,12 +206,14 @@
                 if(this.x < 540 && this.right == true){
                     this.x += 5;
                 }
-                if(this.y < 0 && this.up == true){
-                    this.y += 5;
-                }
-                if(this.y < 800 && this.down == true){
+                if(this.y > 0 && this.up == true){
                     this.y -= 5;
                 }
+                if(this.y < 500 && this.down == true){
+                    console.log(this.y);
+                    this.y += 5;
+                }
+
                 this.collision();
                 this.draw();
             }
