@@ -307,13 +307,27 @@
 
             if(rot == 1) {
                 c.rotate((-angle) * Math.PI / 360);
-                console.log(angle);
                 if(angle < 40 && angle > -1){
                     angle += temp;
                 }
 
                 if(angle > 39){
-                    console.log("alal");
+                    temp = -temp;
+                }
+
+                if(temp < 0 && angle < 1) {
+                    rot = 0;
+                }
+               
+            }
+
+            if(rot == 2) {
+                c.rotate((angle) * Math.PI / 360);
+                if(angle < 40 && angle > -1){
+                    angle += temp;
+                }
+
+                if(angle > 39){
                     temp = -temp;
                 }
 
@@ -325,7 +339,7 @@
 
             if(i != 0 && i % 1000 == 0){
                 console.log(i);
-                rot = 1;
+                rot = Math.floor(Math.random() * 2)+1;
                 angle = 0;
                 temp = 0.1;
             }
