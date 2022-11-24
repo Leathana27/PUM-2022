@@ -307,24 +307,24 @@
             c.fillText("Speed: " + Math.round(((speed*15) + 50)), 10, 80);
 
 
-            bialePasy = bialePasy.filter(pas => pas.y < canvas.height);
-            if(bialePasy.length < 5){
+            bialePasy = bialePasy.filter(pas => pas.y < canvas.height + 150);
+            if(bialePasy.length < 6){
                 bialePasy.push(new Pas(375, -150 , 50, 100, "white"));
             }
             bialePasy.forEach((pas) => {
                 pas.update();
             })
 
-            leweCzerwone = leweCzerwone.filter(pas => pas.y < canvas.height);
-            if(leweCzerwone.length < 5){
+            leweCzerwone = leweCzerwone.filter(pas => pas.y < canvas.height + 150);
+            if(leweCzerwone.length < 6){
                 leweCzerwone.push(new Pas(175, -150 , 25, 100, "red"));
             }
             leweCzerwone.forEach((pas) => {
                 pas.update();
             })
 
-            praweCzerwone = praweCzerwone.filter(pas => pas.y < canvas.height);
-            if(praweCzerwone.length < 5){
+            praweCzerwone = praweCzerwone.filter(pas => pas.y < canvas.height + 150);
+            if(praweCzerwone.length < 6){
                 praweCzerwone.push(new Pas(600, -150 , 25, 100, "red"));
             }
             praweCzerwone.forEach((pas) => {
