@@ -297,10 +297,39 @@
 
         var temp = 0.1;
         var angle = 0;
+        var rot = 0;
 
         function animation(){
             c.clearRect(0, 0, canvas.width, canvas.height);
             trawa.update();
+
+            c.save();
+
+            if(rot == 1) {
+                c.rotate((-angle) * Math.PI / 360);
+                console.log(angle);
+                if(angle < 40 && angle > -1){
+                    angle += temp;
+                }
+
+                if(angle > 39){
+                    console.log("alal");
+                    temp = -temp;
+                }
+
+                if(temp < 0 && angle < 1) {
+                    rot = 0;
+                }
+               
+            }
+
+            if(i != 0 && i % 1000 == 0){
+                console.log(i);
+                rot = 1;
+                angle = 0;
+                temp = 0.1;
+            }
+
             ulica.update();
             lewyBialy.update();
             prawyBialy.update();
@@ -356,6 +385,8 @@
             bullets.forEach((bullet) => {
                 bullet.update();
             })
+
+            c.restore();
 
             c.font = "30px Arail";
             c.beginPath();
