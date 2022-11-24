@@ -25,11 +25,12 @@
         var punkty = 0;
 
         var trawa = new Rectangle(0, 0, canvas.width, canvas.height, "green");
-        var ulica = new Rectangle(200, -canvas.width, 400, canvas.height* 3, "gray", 0);
+        var ulica = new Rectangle(200, -canvas.height, 400, canvas.height* 3, "gray", 0);
 
         var samochod = new Car(370, 490, 60, 100, 10, "#942c70");
 
         var bialePasy = [];
+        bialePasy.push(new Pas(375, -450 , 50, 100, "white"));
         bialePasy.push(new Pas(375, -300 , 50, 100, "white"));
         bialePasy.push(new Pas(375, -150 , 50, 100, "white"));
         bialePasy.push(new Pas(375, 0 , 50, 100, "white"));
@@ -37,10 +38,11 @@
         bialePasy.push(new Pas(375, 300 , 50, 100, "white"));
         bialePasy.push(new Pas(375, 450 , 50, 100, "white"));
 
-        var lewyBialy = new Rectangle(175, -canvas.width, 25, canvas.height* 3, "white", 0);
-        var prawyBialy = new Rectangle(600, -canvas.width, 25, canvas.height* 3, "white", 0);
+        var lewyBialy = new Rectangle(175, -canvas.height, 25, canvas.height* 3, "white", 0);
+        var prawyBialy = new Rectangle(600, -canvas.height, 25, canvas.height* 3, "white", 0);
 
         var leweCzerwone = [];
+        leweCzerwone.push(new Pas(175, -450, 25, 100, "red"));
         leweCzerwone.push(new Pas(175, -300, 25, 100, "red"));
         leweCzerwone.push(new Pas(175, -150, 25, 100, "red"));
         leweCzerwone.push(new Pas(175, 0 , 25, 100, "red"));
@@ -49,6 +51,7 @@
         leweCzerwone.push(new Pas(175, 450, 25, 100, "red"));
 
         var praweCzerwone = [];
+        praweCzerwone.push(new Pas(600, -450 , 25, 100, "red"));
         praweCzerwone.push(new Pas(600, -300 , 25, 100, "red"));
         praweCzerwone.push(new Pas(600, -150 , 25, 100, "red"));
         praweCzerwone.push(new Pas(600, 0 , 25, 100, "red"));
@@ -349,24 +352,24 @@
             prawyBialy.update();
 
             bialePasy = bialePasy.filter(pas => pas.y < canvas.height + 150);
-            if(bialePasy.length < 6){
-                bialePasy.push(new Pas(375, -150 , 50, 100, "white"));
+            if(bialePasy.length < 7){
+                bialePasy.push(new Pas(375, -300 , 50, 100, "white"));
             }
             bialePasy.forEach((pas) => {
                 pas.update();
             })
 
-            leweCzerwone = leweCzerwone.filter(pas => pas.y < canvas.height + 150);
-            if(leweCzerwone.length < 6){
-                leweCzerwone.push(new Pas(175, -150 , 25, 100, "red"));
+            leweCzerwone = leweCzerwone.filter(pas => pas.y < canvas.height + 200);
+            if(leweCzerwone.length < 7){
+                leweCzerwone.push(new Pas(175, -300 , 25, 100, "red"));
             }
             leweCzerwone.forEach((pas) => {
                 pas.update();
             })
 
-            praweCzerwone = praweCzerwone.filter(pas => pas.y < canvas.height + 150);
-            if(praweCzerwone.length < 6){
-                praweCzerwone.push(new Pas(600, -150 , 25, 100, "red"));
+            praweCzerwone = praweCzerwone.filter(pas => pas.y < canvas.height + 200);
+            if(praweCzerwone.length < 7){
+                praweCzerwone.push(new Pas(600, -300 , 25, 100, "red"));
             }
             praweCzerwone.forEach((pas) => {
                 pas.update();
