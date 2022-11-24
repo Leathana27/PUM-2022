@@ -305,11 +305,6 @@
             lewyBialy.update();
             prawyBialy.update();
 
-            c.font = "30px Arail";
-            c.fillText("Score: " + punkty*10, 10, 40);
-            c.fillText("Speed: " + Math.round(((speed*15) + 50)), 10, 80);
-
-
             bialePasy = bialePasy.filter(pas => pas.y < canvas.height + 150);
             if(bialePasy.length < 6){
                 bialePasy.push(new Pas(375, -150 , 50, 100, "white"));
@@ -362,11 +357,19 @@
                 bullet.update();
             })
 
+            c.font = "30px Arail";
+            c.beginPath();
+            c.fillStyle = "black";
+            c.fillText("Score: " + punkty*10, 10, 40);
+            c.fillText("Speed: " + Math.round(((speed*15) + 50)), 10, 80);
+            c.closePath();
+
             if(gameOver){
+                c.beginPath();
                 c.fillStyle = "red";
                 c.fillText("Game over", 310, 300); 
                 c.fillText("Press q to restart...", 310, 360); 
-
+                c.closePath();
             }
 
             i+=1;
