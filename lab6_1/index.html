@@ -230,12 +230,32 @@
                     if(this.x < 540 && this.right == true){
                         this.x += 5;
                     }
-                    if(this.y > 0 && this.up == true){
+                    if(rot == 0) {
+                        if(this.y > 0 && this.up == true){
                         this.y -= 5;
+                        }
+                        if(this.y < 500 && this.down == true){
+                            this.y += 5;
+                        }
                     }
-                    if(this.y < 500 && this.down == true){
-                        this.y += 5;
+                    if(rot == 1) {
+                        if(this.y > 0 + 50 && this.up == true){
+                        this.y -= 5;
+                        }
+                        if(this.y < 500 + 50 && this.down == true){
+                            this.y += 5;
+                        }
                     }
+
+                    if(rot == 2) {
+                        if(this.y > 0 - 50 && this.up == true){
+                        this.y -= 5;
+                        }
+                        if(this.y < 500 - 50 && this.down == true){
+                            this.y += 5;
+                        }
+                    }
+                    
 
                     this.collision();
                 }
@@ -343,6 +363,7 @@
             if(i != 0 && i % 1000 == 0){
                 console.log(i);
                 rot = Math.floor(Math.random() * 2)+1;
+                console.log(rot);
                 angle = 0;
                 temp = 0.1;
             }
