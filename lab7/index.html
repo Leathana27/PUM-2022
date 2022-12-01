@@ -105,6 +105,11 @@
                     this.dy += this.g;
                 }
 
+                if(this.y > 490){
+                    this.y = 490;
+                    this.j = false;
+                }
+
                 this.draw();
             }
         }
