@@ -29,11 +29,10 @@
         czerwonePasy.push(new Pas(600, 550, 100, 50, "red"));
         czerwonePasy.push(new Pas(750, 550, 100, 50, "red"));
 
-        document.addEventListener('keyup', (event) => {
+        document.addEventListener('keydown', (event) => {
             const key = event.key;
-
             if(key === " "){
-                samochod.left = false;
+                samochod.jump();
             }else if(key === "q"){
                 if(gameOver){
                     document.location.reload(true);
@@ -46,8 +45,14 @@
             this.y = y;
             this.w = w;
             this.h = h;
+
+            this.dy = 0;
+
+            this.g = 0.08;
+
             this.radius = radius;
             this.color = color;
+            this.j = false;
 
             this.draw = function () {
                 c.beginPath();
@@ -83,10 +88,21 @@
                 })
             }
 
+            this.jump = function() {
+                if(!this.j){
+                    this.j = true;
+                    this.dy = -5;
+                }
+            }
 
             this.update = function () {
                 if(!gameOver){
                 this.collision();
+                }
+
+                if(this.j){
+                    this.y += this.dy;
+                    this.dy += this.g;
                 }
 
                 this.draw();
