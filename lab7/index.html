@@ -15,6 +15,15 @@
         var c = canvas.getContext("2d");
 
         var samochod = new Car(350, 490, 100, 75, 15, "red");
+        var bialyPas = new Rectangle(0, 550, canvas.width, 50, "black");
+
+        var czerwonePasy = [];
+        czerwonePasy.push(new Pas(0, 550, 100, 50, "red"));
+        czerwonePasy.push(new Pas(150, 550, 100, 50, "red"));
+        czerwonePasy.push(new Pas(300, 550, 100, 50, "red"));
+        czerwonePasy.push(new Pas(450, 550, 100, 50, "red"));
+        czerwonePasy.push(new Pas(600, 550, 100, 50, "red"));
+        czerwonePasy.push(new Pas(750, 550, 100, 50, "red"));
 
         // document.addEventListener('keyup', (event) => {
         // const key = event.key;
@@ -101,7 +110,28 @@
             }
 
             this.update = function () {
-                this.y += 3 + speed;
+                // this.y += 3;
+                this.draw();
+            }
+        }
+
+        function Rectangle(x, y, w, h, color){
+            this.x = x;
+            this.y = y;
+            this.w = w;
+            this.h = h;
+            this.color = color; 
+
+            this.draw = function () {
+                c.beginPath();
+                c.rect(this.x, this.y, this.w, this.h);
+                c.strokeStyle = this.color;
+                c.stroke();
+                c.fillStyle = this.color;
+                c.fill();
+            }
+
+            this.update = function () {
                 this.draw();
             }
         }
@@ -109,7 +139,16 @@
         setInterval(animation, 10);
         function animation() {
             c.clearRect(0, 0, canvas.width, canvas.height);
+            bialyPas.update();
             samochod.update();
+
+            // czerwonePasy = czerwonePasy.filter(pas => pas.y < canvas.height + 200);
+            // if(czerwonePasy.length < 7){
+            //     czerwonePasy.push(new Pas(175, -300 , 25, 100, "red"));
+            // }
+            czerwonePasy.forEach((pas) => {
+                pas.update();
+            })
         }
 
 
