@@ -19,6 +19,8 @@
         var samochod = new Car(150, 490, 100, 75, 15, "pink");
         var bialyPas = new Rectangle(0, 550, canvas.width, 50, "white");
 
+        var gameOver = 0;
+
         var czerwonePasy = [];
         czerwonePasy.push(new Pas(0, 550, 100, 50, "red"));
         czerwonePasy.push(new Pas(150, 550, 100, 50, "red"));
@@ -66,29 +68,22 @@
             }
 
             this.collision = function () {
-                // przeszkody.forEach((przeszkoda) => {
-                //     if(this.x + this.w >= przeszkoda.x && 
-                //     this.x <= przeszkoda.x + przeszkoda.w && 
-                //     this.y + this.h >= przeszkoda.y && 
-                //     this.y <= przeszkoda.y + przeszkoda.h){
-                //         przeszkody = przeszkody.filter(p => przeszkoda.id !== p.id)
-                //         gameOver = 1;
-                //     }
-                // })
+                przeszkody.forEach((przeszkoda) => {
+                    if(this.x + this.w >= przeszkoda.x && 
+                    this.x <= przeszkoda.x + przeszkoda.w && 
+                    this.y + this.h >= przeszkoda.y && 
+                    this.y <= przeszkoda.y + przeszkoda.h){
+                        przeszkody = przeszkody.filter(p => przeszkoda.id !== p.id)
+                        gameOver = 1;
+                    }
+                })
             }
 
 
             this.update = function () {
-                // if(!gameOver){
-                if (this.x > 200 && this.left == true) {
-                    this.x -= 5;
-                }
-                if (this.x < 540 && this.right == true) {
-                    this.x += 5;
-                }
-
+                if(!gameOver){
                 this.collision();
-                // }
+                }
 
                 this.draw();
             }
@@ -113,7 +108,7 @@
             }
 
             this.update = function () {
-                this.x -= 3;
+                this.x -= 4;
                 this.draw();
             }
         }
@@ -156,7 +151,6 @@
             })
 
             if(i % 300 == 0 ){
-                console.log(i);
                 var x = 900;
                 var y = 500;
                 przeszkody.push(new Pas(x, y , 50, 75, "black", przedzkodaID));
@@ -168,6 +162,15 @@
             })
 
             samochod.update();
+
+            if(gameOver){
+                c.beginPath();
+                c.fillStyle = "red";
+                c.fillText("Game over", 310, 300); 
+                c.fillText("Press q to restart...", 310, 360); 
+                c.closePath();
+            }
+
             i += 1;
         }
 
