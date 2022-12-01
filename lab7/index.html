@@ -110,7 +110,7 @@
             }
 
             this.update = function () {
-                // this.y += 3;
+                this.x -= 3;
                 this.draw();
             }
         }
@@ -142,10 +142,10 @@
             bialyPas.update();
             samochod.update();
 
-            // czerwonePasy = czerwonePasy.filter(pas => pas.y < canvas.height + 200);
-            // if(czerwonePasy.length < 7){
-            //     czerwonePasy.push(new Pas(175, -300 , 25, 100, "red"));
-            // }
+            czerwonePasy = czerwonePasy.filter(pas => pas.x > -150);
+            if(czerwonePasy.length < 7){
+                czerwonePasy.push(new Pas(900, 550, 100, 50, "red"));
+            }
             czerwonePasy.forEach((pas) => {
                 pas.update();
             })
