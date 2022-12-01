@@ -13,9 +13,10 @@
         canvas.height = 600;
         canvas.style.border = " 1px solid black";
         var c = canvas.getContext("2d");
+        var i=0;
 
         var trawa = new Rectangle(0, 0, canvas.width, canvas.height, "green");
-        var samochod = new Car(200, 490, 100, 75, 15, "red");
+        var samochod = new Car(150, 490, 100, 75, 15, "pink");
         var bialyPas = new Rectangle(0, 550, canvas.width, 50, "white");
 
         var czerwonePasy = [];
@@ -26,12 +27,13 @@
         czerwonePasy.push(new Pas(600, 550, 100, 50, "red"));
         czerwonePasy.push(new Pas(750, 550, 100, 50, "red"));
 
-        // document.addEventListener('keyup', (event) => {
-        // const key = event.key;
+        document.addEventListener('keyup', (event) => {
+            const key = event.key;
 
-        // if(key === " "){
-        //     samochod.left = false;
-        // }
+            if(key === " "){
+                samochod.left = false;
+            }
+        })
 
         function Car(x, y, w, h, radius, color) {
             this.x = x;
@@ -44,18 +46,18 @@
             this.draw = function () {
                 c.beginPath();
                 c.rect(this.x, this.y, this.w, this.h);
-                c.strokeStyle = "red";
+                c.strokeStyle = color;
                 c.stroke();
-                c.fillStyle = "red";
+                c.fillStyle = color;
                 c.fill();
                 c.closePath();
                 c.beginPath();
-                c.arc(this.x, this.y + 75, this.radius, 0, Math.PI * 2);
+                c.arc(this.x+20, this.y + 75, this.radius, 0, Math.PI * 2);
                 c.fillStyle = "black";
                 c.fill();
                 c.closePath();
                 c.beginPath();
-                c.arc(this.x + 100, this.y + 75, this.radius, 0, Math.PI * 2);
+                c.arc(this.x + 80, this.y + 75, this.radius, 0, Math.PI * 2);
                 c.fillStyle = "black";
                 c.fill();
                 c.closePath();
@@ -137,6 +139,9 @@
             }
         }
 
+        var przedzkodaID = 0;
+        var przeszkody = [];
+
         setInterval(animation, 10);
         function animation() {
             c.clearRect(0, 0, canvas.width, canvas.height);
@@ -150,7 +155,15 @@
                 pas.update();
             })
 
+            if(i % 300 == 0 ){
+                var x = 900;
+                var y = 775;
+                przeszkody.push(new Pas(x, y , 50, 50, "black", przedzkodaID));
+                przedzkodaID += 1;
+            }
+
             samochod.update();
+            i += 1;
         }
 
 
