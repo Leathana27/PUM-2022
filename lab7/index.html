@@ -14,8 +14,9 @@
         canvas.style.border = " 1px solid black";
         var c = canvas.getContext("2d");
 
-        var samochod = new Car(350, 490, 100, 75, 15, "red");
-        var bialyPas = new Rectangle(0, 550, canvas.width, 50, "black");
+        var trawa = new Rectangle(0, 0, canvas.width, canvas.height, "green");
+        var samochod = new Car(200, 490, 100, 75, 15, "red");
+        var bialyPas = new Rectangle(0, 550, canvas.width, 50, "white");
 
         var czerwonePasy = [];
         czerwonePasy.push(new Pas(0, 550, 100, 50, "red"));
@@ -139,9 +140,8 @@
         setInterval(animation, 10);
         function animation() {
             c.clearRect(0, 0, canvas.width, canvas.height);
+            trawa.update();
             bialyPas.update();
-            samochod.update();
-
             czerwonePasy = czerwonePasy.filter(pas => pas.x > -150);
             if(czerwonePasy.length < 7){
                 czerwonePasy.push(new Pas(900, 550, 100, 50, "red"));
@@ -149,6 +149,8 @@
             czerwonePasy.forEach((pas) => {
                 pas.update();
             })
+
+            samochod.update();
         }
 
 
