@@ -16,6 +16,7 @@
         var i=0;
 
         var trawa = new Rectangle(0, 0, canvas.width, canvas.height, "green");
+        var niebo = new Rectangle(0, 0, canvas.width, 400, "cyan");
         var samochod = new Car(150, 490, 100, 75, 15, "pink");
         var bialyPas = new Rectangle(0, 550, canvas.width, 50, "white");
 
@@ -73,7 +74,15 @@
                 c.fill();
                 c.closePath();
                 c.beginPath();
-
+                c.rect(this.x+15, this.y+10, 30, 20);
+                c.fillStyle = "cyan";
+                c.fill();
+                c.closePath();
+                c.beginPath();
+                c.rect(this.x+55, this.y+10, 30, 20);
+                c.fillStyle = "cyan";
+                c.fill();
+                c.closePath();
             }
 
             this.collision = function () {
@@ -166,6 +175,7 @@
         function animation() {
             c.clearRect(0, 0, canvas.width, canvas.height);
             trawa.update();
+            niebo.update();
             bialyPas.update();
             czerwonePasy = czerwonePasy.filter(pas => pas.x > -150);
             if(czerwonePasy.length < 7){
