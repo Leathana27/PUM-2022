@@ -156,11 +156,16 @@
             })
 
             if(i % 300 == 0 ){
+                console.log(i);
                 var x = 900;
-                var y = 775;
-                przeszkody.push(new Pas(x, y , 50, 50, "black", przedzkodaID));
+                var y = 500;
+                przeszkody.push(new Pas(x, y , 50, 75, "black", przedzkodaID));
                 przedzkodaID += 1;
             }
+
+            przeszkody.forEach((pas) => {
+                pas.update();
+            })
 
             samochod.update();
             i += 1;
