@@ -34,6 +34,10 @@
 
             if(key === " "){
                 samochod.left = false;
+            }else if(key === "q"){
+                if(gameOver){
+                    document.location.reload(true);
+                }
             }
         })
 
@@ -164,6 +168,7 @@
             samochod.update();
 
             if(gameOver){
+                c.font = "30px Arail";
                 c.beginPath();
                 c.fillStyle = "red";
                 c.fillText("Game over", 310, 300); 
