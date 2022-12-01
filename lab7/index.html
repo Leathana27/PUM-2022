@@ -12,83 +12,80 @@
             canvas.style.border = " 1px solid black";
             var c = canvas.getContext("2d");
 
-            document.addEventListener('keyup', (event) => {
-            const key = event.key;
+            var samochod = new Car(350, 490, 100, 75, 15, "red");
+
+            // document.addEventListener('keyup', (event) => {
+            // const key = event.key;
 
             // if(key === " "){
             //     samochod.left = false;
             // }
 
             function Car(x, y, w, h, radius, color){
-            this.x = x;
-            this.y = y;
-            this.w = w;
-            this.h = h;
-            this.radius = radius;
-            this.color = color; 
+                this.x = x;
+                this.y = y;
+                this.w = w;
+                this.h = h;
+                this.radius = radius;
+                this.color = color; 
 
-            this.draw = function () {
-                c.beginPath();
-                c.rect(this.x, this.y, this.w, this.h);
-                c.strokeStyle = this.color;
-                c.stroke();
-                c.fillStyle = this.color;
-                c.fill();
-                c.closePath();
-                c.beginPath();
-                c.arc(this.x, this.y + 25, this.radius, 0, Math.PI * 2);
-                c.fillStyle = "black";
-                c.fill();
-                c.closePath();
-                c.beginPath();
-                c.arc(this.x, this.y + 75, this.radius, 0, Math.PI * 2);
-                c.fillStyle = "black";
-                c.fill();
-                c.closePath();
-                c.beginPath();
-                c.arc(this.x + 60, this.y + 25, this.radius, 0, Math.PI * 2);
-                c.fillStyle = "black";
-                c.fill();
-                c.closePath();
-                c.beginPath();
-                c.arc(this.x + 60, this.y + 75, this.radius, 0, Math.PI * 2);
-                c.fillStyle = "black";
-                c.fill();
-                c.closePath();
-                c.beginPath();
-                
-            }
-
-            this.collision = function () {
-                przeszkody.forEach((przeszkoda) => {
-                    if(this.x + this.w >= przeszkoda.x && 
-                    this.x <= przeszkoda.x + przeszkoda.w && 
-                    this.y + this.h >= przeszkoda.y && 
-                    this.y <= przeszkoda.y + przeszkoda.h){
-                        przeszkody = przeszkody.filter(p => przeszkoda.id !== p.id)
-                        gameOver = 1;
-                    }
-                })
-            }
-
-            this.update = function () {
-                if(!gameOver){
-                    if(this.x > 200 && this.left == true){
-                    this.x -= 5;
-                    }
-                    if(this.x < 540 && this.right == true){
-                        this.x += 5;
-                    }
-
-                    this.collision();
+                this.draw = function () {
+                    c.beginPath();
+                    c.rect(this.x, this.y, this.w, this.h);
+                    c.strokeStyle = "red";
+                    c.stroke();
+                    c.fillStyle = "red";
+                    c.fill();
+                    c.closePath();
+                    c.beginPath();
+                    c.arc(this.x, this.y + 75, this.radius, 0, Math.PI * 2);
+                    c.fillStyle = "black";
+                    c.fill();
+                    c.closePath();
+                    c.beginPath();
+                    c.arc(this.x + 100, this.y + 75, this.radius, 0, Math.PI * 2);
+                    c.fillStyle = "black";
+                    c.fill();
+                    c.closePath();
+                    c.beginPath();
+                    
                 }
-               
-                this.draw();
-            }
+
+                this.collision = function () {
+                    // przeszkody.forEach((przeszkoda) => {
+                    //     if(this.x + this.w >= przeszkoda.x && 
+                    //     this.x <= przeszkoda.x + przeszkoda.w && 
+                    //     this.y + this.h >= przeszkoda.y && 
+                    //     this.y <= przeszkoda.y + przeszkoda.h){
+                    //         przeszkody = przeszkody.filter(p => przeszkoda.id !== p.id)
+                    //         gameOver = 1;
+                    //     }
+                    // })
+                }
+
+
+                this.update = function () {
+                    // if(!gameOver){
+                        if(this.x > 200 && this.left == true){
+                        this.x -= 5;
+                        }
+                        if(this.x < 540 && this.right == true){
+                            this.x += 5;
+                        }
+
+                        this.collision();
+                    // }
+                
+                    this.draw();
+                }
         }
 
+        setInterval(animation, 10);
+        function animation(){
+            c.clearRect(0, 0, canvas.width, canvas.height);
+            samochod.update();
+        }
 
-        })
 
         </script>
 
