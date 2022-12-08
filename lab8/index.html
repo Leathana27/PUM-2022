@@ -30,7 +30,6 @@
             };
                 stones.forEach((pawn) => {
                 if (isIntersect(pos, pawn)) {
-                alert("click on circle: " + pawn.x);
                     pawn.changeColor();
                 }
             });
@@ -54,21 +53,26 @@
             this.y = y;
             this.radius = radius;
             this.color = "";
+            this.colored = 0;
 
             this.draw = function () {
                 c.beginPath();
                 c.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                if(this.colored == 1){
+                    c.fillStyle = this.color;
+                    c.fill();
+                }
                 c.closePath();
             }
 
             this.changeColor = function () {
                 if(player == -1) {
-                    c.fillStyle = "black";
+                    this.color = "black";     
                 }else if(player == 1) {
-                    c.fillStyle = "white";
+                    this.color = "white";
                 }
                 player = -player;
-                c.fill();
+                this.colored = 1;
             }
 
             this.update = function () {
