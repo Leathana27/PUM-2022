@@ -14,6 +14,28 @@
     
         var i = 0;
 
+        var player = -1;
+
+        function isIntersect(point, circle) {
+        return (
+            Math.sqrt((point.x - circle.x) ** 2 + (point.y - circle.y) ** 2) <
+            circle.radius
+            );
+        }
+
+        canvas.addEventListener("click", (e) => {
+            const pos = {
+                x: e.clientX,
+                y: e.clientY,
+            };
+                stones.forEach((pawn) => {
+                if (isIntersect(pos, pawn)) {
+                alert("click on circle: " + pawn.x);
+                    pawn.changeColor();
+                }
+            });
+        });
+
         var plansza = new Rectangle(100, 0, 594, 600, "yellow");
         var stones = [];
         var count = 0;
@@ -37,6 +59,16 @@
                 c.beginPath();
                 c.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
                 c.closePath();
+            }
+
+            this.changeColor = function () {
+                if(player == -1) {
+                    c.fillStyle = "black";
+                }else if(player == 1) {
+                    c.fillStyle = "white";
+                }
+                player = -player;
+                c.fill();
             }
 
             this.update = function () {
