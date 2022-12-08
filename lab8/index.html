@@ -15,6 +15,38 @@
         var i = 0;
 
         var plansza = new Rectangle(100, 0, 594, 600, "yellow");
+        var stones = [];
+        var count = 0;
+        var count2 = 0;
+        for(let j = 33; c < 9; j+= 66) {
+            for(let i = 133; count < 9 ; i+= 66) {
+                stones.push(new Stone(i, j, 30))
+                count+=1;
+            }
+            count2+=1;
+        }
+       
+        // var ball = new Stone(133, 33, 30);
+        // var ball2 = new Stone(133, 99, 30);
+        // var ball3 = new Stone(199, 99, 30);
+
+        function Stone(x, y, radius) {
+            this.x = x;
+            this.y = y;
+            this.radius = radius;
+
+            this.draw = function () {
+                c.beginPath();
+                c.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                c.fillStyle = "black";
+                c.fill();
+                c.closePath();
+            }
+
+            this.update = function () {
+                this.draw();
+            }
+        }
 
         function Rectangle(x, y, w, h, color){
             this.x = x;
@@ -135,6 +167,9 @@
 
         function animation(){
             plansza.update();
+            stones.forEach((s) => {
+                s.update();
+            })
         }
 
     </script>
