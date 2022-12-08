@@ -199,28 +199,23 @@
         }
 
         setInterval(animation, 10);
-        
+    
+
         function animation(){
             plansza.update();
             stones.forEach((s) => {
                 s.update();
             })
 
-            let tab = [9][9];
-            let a = 0;
-            let b = 0;
+            let tab = [];
             stones.forEach((s) => {
                 if(s.color == "red") {
-                    tab[a][b].push(0);
+                    tab.push("0");
                 } else if(s.color == "black") {
-                    tab[a][b] = 1;
+                    tab.push("1");
                 } else if(s.color == "white") {
-                    tab[a][b] = 2;
+                    tab.push("2");
                 }
-                if(a == 8){
-                    b+=1;
-                }
-                a++;
             })
 
             console.log(tab);
