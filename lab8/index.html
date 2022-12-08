@@ -201,6 +201,11 @@
         setInterval(animation, 10);
     
 
+        function test(t) {
+            var newArray = [];
+            while(t.length) newArray.push(t.splice(0,9));
+        }
+
         function animation(){
             plansza.update();
             stones.forEach((s) => {
@@ -217,9 +222,7 @@
                     tab.push("2");
                 }
             })
-
-            console.log(tab);
-
+            test(tab);
         }
 
     </script>
