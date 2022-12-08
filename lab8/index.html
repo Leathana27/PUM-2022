@@ -18,9 +18,11 @@
         var stones = [];
         var count = 0;
         var count2 = 0;
-        for(let j = 33; c < 9; j+= 66) {
+        for(let j = 33; count2 < 9; j+= 66) {
+            // console.log(j);
             for(let i = 133; count < 9 ; i+= 66) {
-                stones.push(new Stone(i, j, 30))
+                console.log(i);
+                stones.push(new Stone(i, j, 30));
                 count+=1;
             }
             count2+=1;
