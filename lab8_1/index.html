@@ -28,10 +28,13 @@
                 x: e.clientX,
                 y: e.clientY,
             };
-                stones.forEach((pawn) => {
-                if (isIntersect(pos, pawn)) {
+                stones.forEach((s) => {
+                    s.forEach((pawn) => {
+                        if (isIntersect(pos, pawn)) {
                     pawn.changeColor();
                 }
+                    })
+               
             });
         });
 
@@ -40,10 +43,12 @@
         var count = 0;
         var count2 = 0;
         for(let j = 33; count2 < 9; j+= 66) {
+            let tab_stone = [];
             for(let z = 133; count < 9 ; z+= 66) {
-                stones.push(new Stone(z, j, 30));
+                tab_stone.push(new Stone(z, j, 30));
                 count+=1;
             }
+            stones.push(tab_stone);
             count = 0;
             count2+=1;
         }
@@ -209,20 +214,10 @@
         function animation(){
             plansza.update();
             stones.forEach((s) => {
-                s.update();
+                s.forEach((ss) => {
+                    ss.update();
+                })
             })
-
-            let tab = [];
-            stones.forEach((s) => {
-                if(s.color == "red") {
-                    tab.push("0");
-                } else if(s.color == "black") {
-                    tab.push("1");
-                } else if(s.color == "white") {
-                    tab.push("2");
-                }
-            })
-            test(tab);
         }
 
     </script>
