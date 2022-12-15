@@ -58,6 +58,7 @@
             this.y = y;
             this.radius = radius;
             this.color = "red";
+            this.colorId = 0;
             this.colored = 0;
 
             this.draw = function () {
@@ -73,10 +74,12 @@
             this.changeColor = function () {
                 if(this.colored != 1){
                     if(player == -1) {
-                    this.color = "black";     
-                }else if(player == 1) {
-                    this.color = "white";
-                }
+                        this.color = "black";   
+                        this.colorId = 1;  
+                    }else if(player == 1) {
+                        this.color = "white";
+                        this.colorId = 2;
+                    }
                 player = -player;
                 this.colored = 1;
                 }
@@ -204,11 +207,9 @@
         }
 
         setInterval(animation, 10);
-    
 
-        function test(t) {
-            var newArray = [];
-            while(t.length) newArray.push(t.splice(0,9));
+        function znajdzSomsiada(x,y){
+            const kolor = stones[x][y]
         }
 
         function animation(){
