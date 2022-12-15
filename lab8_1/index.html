@@ -209,7 +209,24 @@
         setInterval(animation, 10);
 
         function znajdzSomsiada(x,y){
-            const kolor = stones[x][y]
+            var kolor = stones[x][y].colorId;
+            var wspolrzedne = [];
+
+            const test = (x, y) => {
+                if(x < 0 || y < 0 || x >= 9 || y >= 9) {
+                    return;
+                }   
+                
+                if(stones[x][y].colorId != colorId) {
+                    return;
+                }
+
+                if(wspolrzedne.some((pionek) => pionek.x == x && pionek.y == y)) {
+                    return;
+                }
+            }
+
+
         }
 
         function animation(){
