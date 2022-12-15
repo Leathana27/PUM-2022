@@ -31,8 +31,8 @@
                 stones.forEach((s) => {
                     s.forEach((pawn) => {
                         if (isIntersect(pos, pawn)) {
-                    pawn.changeColor();
-                }
+                            pawn.changeColor();
+                        }
                     })
                
             });
@@ -224,9 +224,27 @@
                 if(wspolrzedne.some((pionek) => pionek.x == x && pionek.y == y)) {
                     return;
                 }
+
+                wspolrzedne.push({x,y});
+                test(x+1, y);
+                test(x-1, y);
+                test(x, y+1);
+                test(x, y-1);
+            };
+            test(x,y);
+            return wspolrzedne;
+
+        }
+
+        function zbij() {
+            for(let i = 0; i < 9; i++) {
+                for(let j = 0; j <9 ; j++) {
+                    if(!stones[i][j].colorId) continue;
+
+                    var somsiedzi = znajdzSomsiada(i ,j);
+
+                }
             }
-
-
         }
 
         function animation(){
